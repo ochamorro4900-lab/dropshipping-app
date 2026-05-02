@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | DropShop</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>🛒 DropShop</h2>
+      </div>
+      <nav>
+        <a href="#" class="active">📊 Dashboard</a>
+        <a href="#">📦 Productos</a>
+        <a href="#">🛍️ Pedidos</a>
+        <a href="#">🏭 Proveedores</a>
+        <a href="#">📈 Métricas</a>
+        <a href="#">⚙️ Configuración</a>
+      </nav>
+      <button class="logout-btn" id="btn-logout">🚪 Cerrar sesión</button>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+
+      <!-- Barra de usuario -->
+      <div class="user-bar" id="user-bar">
+        <div class="avatar" id="user-avatar">?</div>
+        <div class="info">
+          <span>Bienvenido de vuelta</span>
+          <strong id="user-name">Cargando...</strong>
+        </div>
+      </div>
+
+      <h1>Panel de control</h1>
+
+      <!-- Tarjetas de estadísticas -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">Pedidos hoy</div>
+          <div class="value" id="stat-pedidos">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Productos activos</div>
+          <div class="value" id="stat-productos">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Proveedores</div>
+          <div class="value" id="stat-proveedores">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Ventas del mes</div>
+          <div class="value" id="stat-ventas">$0</div>
+        </div>
+      </div>
+
+      <p style="color: var(--text-light); font-size: 0.9rem;">
+        Módulos de productos, pedidos y proveedores en desarrollo. 🚀
+      </p>
+
+    </main>
+  </div>
+
+  <script type="module" src="../main.js"></script>
+
+</body>
+</html>
