@@ -1,93 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DropShop - Login</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Configuración de caracteres y responsividad -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título de la Página -->
+  <title>DropShop - Plataforma Dropshipping</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    body { font-family:'Segoe UI',sans-serif; background:#f5f6fa; color:#2d3436; }
+
+    /* Encabezado */
+    header {
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      color:white; padding:20px 40px;
+      display:flex; align-items:center; gap:20px;
     }
-    .card {
-      background: white;
-      padding: 40px 36px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    header h1 { font-size:1.8rem; }
+    header p { font-size:0.95rem; opacity:0.9; }
+
+    /* Navegación */
+    nav { background:#2d3436; padding:12px 40px; }
+    nav ul { list-style:none; display:flex; gap:24px; }
+    nav ul li a {
+      color:white; text-decoration:none;
+      font-size:0.95rem; transition:0.2s;
     }
-    h1 { color: #6C63FF; text-align: center; margin-bottom: 6px; }
-    p.sub { text-align:center; color:#636e72; font-size:0.85rem; margin-bottom:24px; }
+    nav ul li a:hover { color:#6C63FF; }
+
+    /* Main */
+    main { padding:40px; }
+    section { margin-bottom:50px; }
+    section h2 {
+      font-size:1.4rem; color:#6C63FF;
+      margin-bottom:12px;
+      border-left:4px solid #6C63FF;
+      padding-left:12px;
+    }
+    section p { margin-bottom:12px; color:#636e72; }
+    section a {
+      color:#6C63FF; font-weight:600;
+      text-decoration:none;
+    }
+    section a:hover { text-decoration:underline; }
+
+    /* Imágenes */
+    .img-container { display:flex; gap:16px; flex-wrap:wrap; margin-top:16px; }
+    .img-container img { border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+
+    /* Formulario */
+    form { background:white; padding:24px; border-radius:12px; max-width:500px; box-shadow:0 4px 20px rgba(0,0,0,0.08); margin-top:16px; }
+    form h3 { margin-bottom:16px; color:#2d3436; }
     label { display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; }
-    input {
-      width:100%; padding:11px 14px;
+    input[type="text"], input[type="number"], input[type="email"] {
+      width:100%; padding:10px 14px;
       border:1.5px solid #dcdde1;
       border-radius:8px; font-size:0.95rem;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
     input:focus { outline:none; border-color:#6C63FF; }
-    button {
-      width:100%; padding:12px;
-      background:#6C63FF; color:white;
-      border:none; border-radius:8px;
-      font-size:1rem; font-weight:600;
-      cursor:pointer; margin-top:4px;
+    .btns { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      padding:10px 20px; border:none;
+      border-radius:8px; font-size:0.9rem;
+      font-weight:600; cursor:pointer; transition:0.2s;
     }
-    button:hover { background:#574fd6; }
-    .msg { text-align:center; margin-top:12px; font-size:0.85rem; }
-    .error { color:#e74c3c; }
-    .footer { text-align:center; margin-top:20px; font-size:0.88rem; color:#636e72; }
-    .footer a { color:#6C63FF; font-weight:600; text-decoration:none; }
+    .btn-primary { background:#6C63FF; color:white; }
+    .btn-primary:hover { background:#574fd6; }
+    .btn-warning { background:#f39c12; color:white; }
+    .btn-warning:hover { background:#d68910; }
+    .btn-danger { background:#e74c3c; color:white; }
+    .btn-danger:hover { background:#c0392b; }
+
+    /* Video */
+    iframe { border-radius:12px; margin-top:16px; max-width:100%; }
+
+    /* Footer */
+    footer {
+      background:#2d3436; color:white;
+      text-align:center; padding:20px;
+      font-size:0.9rem;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🛒 DropShop</h1>
-    <p class="sub">Plataforma de gestión dropshipping</p>
 
-    <label for="email">Correo electrónico</label>
-    <input type="email" id="email" placeholder="tucorreo@email.com" />
-
-    <label for="password">Contraseña</label>
-    <input type="password" id="password" placeholder="••••••••" />
-
-    <button onclick="login()">Iniciar sesión</button>
-    <p class="msg error" id="msg"></p>
-
-    <div class="footer">
-      ¿No tienes cuenta? <a href="register.html">Regístrate aquí</a>
+  <!-- Encabezado -->
+  <header>
+    <!-- Logo y título principal -->
+    <div>
+      <h1>🛒 DropShop</h1>
+      <!-- Descripción breve -->
+      <p>Plataforma de Gestión Dropshipping - Oscar Andres Chamorro Vallejo</p>
     </div>
-  </div>
+  </header>
 
-  <script>
-    const { createClient } = supabase
+  <!-- Menú de Navegación -->
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#proveedores">Proveedores</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="login.html">🔐 Iniciar sesión</a></li>
+    </ul>
+  </nav>
 
-    const client = createClient(
-      'https://wdvoyyujxcxftrbjkwjk.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indkdm95eXVqeGN4ZnRyYmprd2prIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2ODE4NzYsImV4cCI6MjA5MzI1Nzg3Nn0.z9jVhzA2bZeI5XcD8k3bSXXt6RVAnpGG2h95c9jIBA8'
-    )
+  <main>
 
-    async function login() {
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
-      const msg = document.getElementById('msg')
-      msg.textContent = 'Iniciando sesión...'
+    <!-- Sección Inicio -->
+    <section id="inicio">
+      <h2>Bienvenido a DropShop</h2>
+      <p>Plataforma web para la gestión automatizada de tiendas bajo el modelo de negocio dropshipping.</p>
+      <p>Administra tus productos, proveedores y pedidos desde un solo lugar.</p>
+      <!-- Imágenes en línea con Flexbox -->
+      <div class="img-container">
+        <img src="imagenes/dropshipping.png" alt="Dropshipping" width="300">
+        <img src="imagenes/ecommerce.png" alt="E-commerce" width="300">
+      </div>
+    </section>
 
-      const { error } = await client.auth.signInWithPassword({ email, password })
+    <!-- Sección Productos -->
+    <section id="productos">
+      <h2>Productos</h2>
+      <p>Gestiona tu catálogo de productos, precios y stock disponible.</p>
+      <!-- Enlace externo -->
+      <a href="https://www.shopify.com/co/blog/dropshipping" target="_blank">Más información sobre dropshipping</a>
 
-      if (error) {
-        msg.textContent = 'Correo o contraseña incorrectos.'
-      } else {
-        window.location.href = 'dashboard.html'
-      }
-    }
-  </script>
+      <!-- Formulario de gestión de productos -->
+      <form>
+        <h3>Gestión de Productos</h3>
+
+        <!-- Nombre del producto -->
+        <label for="nombre-producto">Nombre del Producto:</label>
+        <input type="text" id="nombre-producto" name="nombre-producto" placeholder="Ingrese el nombre del producto">
+
+        <!-- Precio -->
+        <label for="precio">Precio ($):</label>
+        <input type="number" id="precio" name="precio" placeholder="Ingrese el precio">
+
+        <!-- Stock -->
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" placeholder="Ingrese el stock disponible">
+
+        <!-- Botones de acción -->
+        <div class="btns">
+          <button type="button" class="btn btn-primary">Agregar Producto</button>
+          <button type="button" class="btn btn-warning">Actualizar Producto</button>
+          <button type="button" class="btn btn-danger">Eliminar Producto</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Sección Proveedores -->
+    <section id="proveedores">
+      <h2>Proveedores</h2>
+      <p>Información sobre los proveedores disponibles y sus condiciones de trabajo.</p>
+      <a href="https://www.aliexpress.com" target="_blank">Ver proveedores en AliExpress</a>
+
+      <!-- Formulario de gestión de proveedores -->
+      <form>
+        <h3>Gestión de Proveedores</h3>
+
+        <!-- Nombre del proveedor -->
+        <label for="nombre-proveedor">Nombre del Proveedor:</label>
+        <input type="text" id="nombre-proveedor" name="nombre-proveedor" placeholder="Ingrese el nombre del proveedor">
+
+        <!-- País -->
+        <label for="pais">País:</label>
+        <input type="text" id="pais" name="pais" placeholder="Ingrese el país de origen">
+
+        <!-- Correo -->
+        <label for="email-proveedor">Correo electrónico:</label>
+        <input type="email" id="email-proveedor" name="email-proveedor" placeholder="correo@proveedor.com">
+
+        <!-- Botones de acción -->
+        <div class="btns">
+          <button type="button" class="btn btn-primary">Agregar Proveedor</button>
+          <button type="button" class="btn btn-warning">Actualizar Proveedor</button>
+          <button type="button" class="btn btn-danger">Eliminar Proveedor</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Sección Video -->
+    <section id="video">
+      <h2>¿Qué es el Dropshipping?</h2>
+      <p>Descubre más sobre el modelo de negocio dropshipping en el siguiente video:</p>
+      <!-- Video de YouTube incrustado -->
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/PCTyOgMxMSY"
+        title="Qué es el Dropshipping"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>¿Tienes alguna pregunta? Escríbenos.</p>
+
+      <!-- Formulario de contacto -->
+      <form>
+        <h3>Envíanos un mensaje</h3>
+
+        <label for="nombre-contacto">Nombre:</label>
+        <input type="text" id="nombre-contacto" name="nombre-contacto" placeholder="Tu nombre completo">
+
+        <label for="email-contacto">Correo electrónico:</label>
+        <input type="email" id="email-contacto" name="email-contacto" placeholder="tucorreo@email.com">
+
+        <label for="mensaje">Mensaje:</label>
+        <input type="text" id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí">
+
+        <div class="btns">
+          <button type="button" class="btn btn-primary">Enviar Mensaje</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer>
+    <p>&copy; 2025 DropShop - Oscar Andres Chamorro Vallejo - Todos los derechos reservados</p>
+  </footer>
+
 </body>
 </html>
